@@ -11,4 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Connected');
     }
 
+    ws.onmessage = e => {
+        let out = document.querySelector('#output');
+        out.innerHTML += `${e.data}<br>`;
+    }
+
+    const btn = document.querySelector('.btn');
+    btn.addEventListener('click', () => {
+        ws.send(document.querySelector('#input').value);
+    });
+
 })
