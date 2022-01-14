@@ -1,10 +1,9 @@
-package main
+package handler
 
 import (
 	"fmt"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 	"golang.org/x/net/websocket"
 )
 
@@ -32,13 +31,4 @@ func handleWebSocket(c echo.Context) error {
 		}
 	}).ServeHTTP(c.Response(), c.Request())
 	return nil
-}
-
-func main() {
-
-	e := echo.New()
-	e.Use(middleware.Logger())
-	e.Static("/", "public")
-	e.GET("/ws", handleWebSocket)
-	e.Logger.Fatal(e.Start(":8000"))
 }
